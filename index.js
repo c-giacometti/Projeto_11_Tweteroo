@@ -2,11 +2,24 @@ import express from 'express';
 import cors from 'cors';
 
 const server = express();
-server.use(cors());
-server.use(express.json());
 
-let tweets = [];
-let user;
+server.use(express.json());
+server.use(cors());
+
+let user = [
+    {
+      username: "bobesponja",
+      avatar:
+        "https://super.abril.com.br/wp-content/uploads/2020/09/04-09_gato_SITE.jpg?quality=70&strip=info",
+    },
+  ];
+  
+  let tweets = [
+    {
+      username: "bobesponja",
+      tweet: "eu amo o hub",
+    },
+  ];
 
 server.post('/sign-up', (req, res) => {
 
@@ -25,7 +38,9 @@ server.post('/sign-up', (req, res) => {
 
 server.get('/tweets', (req, res) => {
 
-    res.send(tweets);
+    const newTweets = [...tweets].reverse();
+
+    res.send(newTweets.slice(0,10));
 
 })
 
